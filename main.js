@@ -65,7 +65,7 @@ function printProductsInCart(){
   cartProducts.innerHTML = html;
   
 }
-
+//cambio
 function printProducts() {
   let html = '';
   
