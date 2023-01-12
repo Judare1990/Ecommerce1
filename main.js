@@ -53,8 +53,8 @@ function printProductsInCart(){
         </div>
 
         <div class="product__info">        
-          <p><b>Name</b>: ${Name}</p>
-          <p><b>Price</b>: ${Price}</p>
+          <p>${Name}</p>
+          <p>${Price}</p>
           <p><b>Amount</b>: ${amount}</p>
         </div>
              
@@ -105,5 +105,17 @@ if(e.target.classList.contains('bx-plus')){
  }
 }
 printProductsInCart();
+});
+
+cartProducts.addEventListener('click',function(e){
+  if (e.target.classList.contains('bx-minus')){
+    alert('quiero restar')
+  }
+  if (e.target.classList.contains('bx-plus')){
+    alert('quiero agregar')
+  }
+  if (e.target.classList.contains('bxs-trash')){
+    alert('quiero eliminar')
+  }
 })
 printProducts()

@@ -270,13 +270,31 @@ footer {
 }
 
 .cartProducts{
-height: 80%;
-background-color: red;
+    height: 80%;
+padding: 1rem;
+gap: 1.5rem;
+overflow-y: scroll;
 }
-.cartProducts product{
-    background-color: blue;
+.cartProducts .product__img{
+    gap:1rem;
+    text-align: center;
 }
 
+.cartProducts .product{
+    width: 100%;
+    flex-direction: row;
+    gap: 1.3rem;
+    justify-content: space-between;
+    
+}
+
+.cartProducts .product__info{
+    gap:.5rem;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    
+}
 .cartTotal{
     height: 20%;
     background-color: green;
