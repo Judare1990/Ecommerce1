@@ -59,6 +59,7 @@ header {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    cursor: pointer;
 }
 
 .right__header i {
@@ -76,8 +77,6 @@ header {
     color: var(--headerColor);
     padding: 1rem 1.5rem;
 }
-
-/*      border-left: 1px solid grey;*/
 
 .main__img {
     background: var(--firstColor);
@@ -214,10 +213,6 @@ header {
     background: var(--headerColor);
 }
 
-
-
-
-
 footer {
     background: var(--grey);
 }
@@ -258,4 +253,31 @@ footer {
 
 .icons__footer i {
     font-size: 2rem;
+}
+
+.contentCart{
+    width: 20vw;
+    height: calc(100vh - 50px);
+    position: fixed;
+    background-color: var(--headerColor);
+    top: 70px;
+    right: 0;
+    transform: translateX(100%);
+    transition: transform 0.7s;
+}
+.contentCart__show{
+    transform: translateX(0);
+}
+
+.cartProducts{
+height: 80%;
+background-color: red;
+}
+.cartProducts product{
+    background-color: blue;
+}
+
+.cartTotal{
+    height: 20%;
+    background-color: green;
 }
