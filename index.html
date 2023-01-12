@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="./styles.css">
 </head>
 
@@ -21,8 +22,8 @@
       </div>
 
       <div class="right__header">
-        <box-icon name='moon'></box-icon>
-        <box-icon name='shopping-bag'></box-icon>
+        <i class='bx bx-moon'></i>
+        <i class='bx bx-shopping-bag'></i>
       </div>
     </div>
   </header>
@@ -48,7 +49,7 @@
         </div>
 
         <div class="main__img">
-          <img src="./home.png" alt="">
+          <img src="./images/home.png" alt="">
         </div>
 
       </div>
@@ -56,61 +57,78 @@
     </main>
   </div>
 
-  <section class="products">
-    <div class="allProducts">
-      <div class="showAll">
+  <section class="show__all">
+
+    <div class="show__all_container">
+
+      <div class="show__box">
         <a href="#">Show All</a>
         <span>show all products</span>
       </div>
 
-      <div class="hoddies">
+      <div class="show__box">
         <a href="#">Hoodies</a>
         <span>3 products</span>
       </div>
 
-      <div class="shirts">
+      <div class="show__box">
         <a href="#">Shirts</a>
         <span>4 products</span>
       </div>
 
-      <div class="sweatshirts">
+      <div class="show__box">
         <a href="#">Sweatshirts</a>
         <span>3 products</span>
       </div>
+
     </div>
+
   </section>
 
-  <footer class="info">
-      <div class="location">
+  <div class="padre__products">
+    <section class="products">
+      <!-- javasctip -->
+    </section>
+  </div>
+
+  <footer>
+
+    <div class="footer__container">
+
+      <div class="box__footer">
         <h2>Our information</h2>
         <span>Toluca - México</span>
       </div>
 
-        <div class="AboutUs">
-          <h2>About Us</h2>
-          <a href="#">Support Center</a>
-          <a href="#">Customer Support</a>
-          <a href="#">About Us</a>
-          <a href="#">Copy Right</a>
-        </div>
+      <div class="box__footer">
+        <h2>About Us</h2>
+        <a href="#">Support Center</a>
+        <a href="#">Customer Support</a>
+        <a href="#">About Us</a>
+        <a href="#">Copy Right</a>
+      </div>
 
-        <div class="Product">
-          <h2 class="product2">Product</h2>
-          <a href="#">Hoodies</a>
-            <a href="#">Shirts</a>
-            <a href="#">Sweatshirts</a>
-        </div>
+      <div class="box__footer">
+        <h2 class="product2">Product</h2>
+        <a href="#">Hoodies</a>
+        <a href="#">Shirts</a>
+        <a href="#">Sweatshirts</a>
+      </div>
 
-        <div class="Social">
-          <h2>Social</h2>
-          <img src="./bxl-facebook.svg" alt="">
-          <img src="./bxl-twitter.svg" alt="">
-          <img src="./bxl-instagram.svg" alt="">
+      <div class="box__footer">
+        <h2>Social</h2>
+        <div class="icons__footer">
+          <i class='bx bxl-facebook'></i>
+          <i class='bx bxl-twitter'></i>
+          <i class='bx bxl-instagram'></i>
         </div>
-      
-    </footer>
-  </div>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+      </div>
+    </div>
+
+  </footer>
+
+
+
   <script src="./main.js"></script>
 </body>
 
