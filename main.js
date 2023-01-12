@@ -176,3 +176,27 @@ cartProducts.addEventListener("click", function (e) {
     printTotalCart();
     printAmountCart();
 });
+
+/*DARK MODE LOGICA*/
+
+const button__dark = document.querySelector('#button__dark-mode');
+const body = document.querySelector('body');
+
+load();
+
+
+button__dark.addEventListener('click', e => {
+  body.classList.toggle('dark__mode');
+  store(body.classList.contains('dark__mode'))
+
+});
+function load () {
+  const darkmode = localStorage.getItem('dark__mode');
+  if (!darkmode) {
+    store('false');
+  }else if (darkmode == 'true') {
+    body.classList.add('darkmode');
+  }}
+function store(value){
+  localStorage.setItem('darkmode',value);
+}
