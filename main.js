@@ -1,6 +1,6 @@
 let collections = [
   {
-    id: 'o',
+    id: '0',
     Name: 'Hoodies',
     Price: 14.00,
     Stock: 10,
@@ -38,32 +38,34 @@ function printProductsInCart(){
 
   const arrayCart= Object.values(objCart);
 
-  arrayCart.forEach(function ({ id, Name, Price, urlImage, amount }) {
+  arrayCart.forEach(function ({ id, Name, Price, urlImage, amount }) {  
+
     html += `
 
         <div class="product">
+          <div class="product__img">
+            <img src="${urlImage}" alt="${Name}">
+          </div>
 
-        <div class="product__img">
-          <img src="${urlImage}" alt="${Name}">
+          <div class="product__icons" id="${id}">
+            <i class='bx bx-minus'></i>
+            <i class='bx bx-plus'></i>
+            <i class='bx bxs-trash'></i>
+          </div>
 
-          <i class='bx bx-minus'></i>
-          <i class='bx bx-plus'></i>
-          <i class='bx bxs-trash'></i>
-
+          <div class="product__info">        
+            <p>${Name}</p>
+            <p>${Price}</p>
+            <p><b>Amount</b>: ${amount}</p>
+          </div>
         </div>
-
-        <div class="product__info">        
-          <p>${Name}</p>
-          <p>${Price}</p>
-          <p><b>Amount</b>: ${amount}</p>
-        </div>
-             
-      </div>
 `
   });
-
+  
   cartProducts.innerHTML = html;
+  
 }
+
 function printProducts() {
   let html = '';
   
@@ -74,7 +76,7 @@ function printProducts() {
 
         <div class="product__img">
           <img src="${urlImage}" alt="${Name}">
-          <button id= "${id}" class="btn btn__add"><i class='bx bx-plus' ></i></button>
+          <button id= "${id}" class="btn btn__add">+</button>
         </div>
 
         <div class="product__info">        
@@ -87,10 +89,15 @@ function printProducts() {
 `
   });
   products.innerHTML = html
+  
 }
+printProducts()
+
+
+
 products.addEventListener('click', function(e){
-if(e.target.classList.contains('bx-plus')){
- const id= e.target.parentElement.id;
+if(e.target.classList.contains('btn__add')){
+ const id= e.target.id;
 
  let findProduct= collections.find(function(collection){
   return collection.id === id;
@@ -102,20 +109,70 @@ if(e.target.classList.contains('bx-plus')){
     ...findProduct,
     amount: 1
   };
+  
  }
 }
+
 printProductsInCart();
+
 });
 
-cartProducts.addEventListener('click',function(e){
-  if (e.target.classList.contains('bx-minus')){
-    alert('quiero restar')
+
+//////////////////
+
+function printAmountCart() {
+  let sum = 0;
+
+  const arrayCart = Object.values(objCart);
+
+  if (!arrayCart.length) {
+      amountCart.style.display = "none";
+      return;
   }
-  if (e.target.classList.contains('bx-plus')){
-    alert('quiero agregar')
+
+  amountCart.style.display = "inline-block";
+
+  arrayCart.forEach(function ({ amount }) {
+      sum += amount;
+  });
+
+  amountCart.textContent = sum;
+}
+////////////////////////////////
+
+cartProducts.addEventListener("click", function (e) {
+  if (e.target.classList.contains("bx-minus")) {
+      const id = e.target.parentElement.id;
+      
+      if (objCart[id].amount === 1) {
+          const res = confirm("Seguro quieres eliminar este producto");
+          if (res) delete objCart[id];
+      } else {
+          objCart[id].amount--;
+      }
   }
-  if (e.target.classList.contains('bxs-trash')){
-    alert('quiero eliminar')
+
+  if (e.target.classList.contains("bx-plus")) {
+      const id = e.target.parentElement.id;
+
+      let findProduct = collections.find(function (collection) {
+          return collection.id === id;
+      });
+
+      if (objCart[id].amount) {
+        objCart[id].amount++;
+      } 
+      
   }
-})
-printProducts()
+
+  if (e.target.classList.contains("bxs-trash")) {
+      const id = e.target.parentElement.id;
+
+      const res = confirm("Seguro quieres eliminar este producto");
+      if (res) delete objCart[id];
+  }
+
+    printProductsInCart();
+    printTotalCart();
+    printAmountCart();
+});
