@@ -2,21 +2,21 @@ let collections = [
   {
     id: '0',
     Name: 'Hoodies',
-    Price: 14.00,
+    Price: 14,
     Stock: 10,
     urlImage: "./images/featured1.png"
   },
   {
     id: '1',
     Name: 'Shirts',
-    Price: 24.00,
+    Price: 24,
     Stock: 15,
     urlImage: "./images/featured2.png"
   },
   {
     id: '2',
     Name: 'Sweatshirts',
-    Price: 24.00,
+    Price: 24,
     Stock: 20,
     urlImage: "./images/featured3.png"
   }
@@ -31,7 +31,43 @@ iconCart.addEventListener('click', function(){
 }
 const products = document.querySelector(".products");
 const cartProducts= document.querySelector('.cartProducts');
+const cartTotal= document.querySelector('.cartTotal');
+const amountCart= document.querySelector('.amountCart');
+
 let objCart= {};
+
+function printAmountCart(){
+  let sum = 0;
+
+  const arrayCart = Object.values(objCart);
+
+  arrayCart.forEach(function({ amount }){
+
+    sum += amount;
+
+  });
+
+}
+
+function printTotalCart() {
+  const arrayCart = Object.values(objCart);
+  if(!arrayCart.length){
+    cartTotal.innerHTML =`
+    <h3>No hay nada, a comprar!!</h3>`;
+    return
+  }
+
+let sum = 0;
+
+arrayCart.forEach(function({amount,Price}) {
+    sum += amount * Price
+});
+
+  cartTotal.innerHTML =`
+    <h3>Total a pagar ${sum}</h3>
+    <button class="btn btn__buy">Comprar</button>
+    `;
+}
 
 function printProductsInCart(){
   let html= '';
@@ -114,6 +150,8 @@ if(e.target.classList.contains('btn__add')){
 }
 
 printProductsInCart();
+printTotalCart();
+printAmountCart();
 
 });
 
@@ -159,11 +197,12 @@ cartProducts.addEventListener("click", function (e) {
           return collection.id === id;
       });
 
-      if (objCart[id].amount) {
+      if (findProduct.Stock === objCart[id].amount) {
+        alert('No tengo mas en stock')
+      } else{
         objCart[id].amount++;
-      } 
-      
-  }
+      }
+      };
 
   if (e.target.classList.contains("bxs-trash")) {
       const id = e.target.parentElement.id;
@@ -175,7 +214,41 @@ cartProducts.addEventListener("click", function (e) {
     printProductsInCart();
     printTotalCart();
     printAmountCart();
+    printAmountCart();
 });
+
+cartTotal.addEventListener('click', function(e){
+  if(e.target.classList.contains('btn__buy')){
+
+    const res= confirm('Seguro quieres hacer la compra')
+
+    if (!res) return;
+    let newArray=[]
+
+    collections.forEach(function(collection){
+      if(collection.id === objCart[collection.id]?.id){
+
+        newArray.push({
+          ...collection,
+          Stock: collection.Stock - objCart[collection.id].amount
+        })
+
+      } else{
+
+        newArray.push(collection);
+
+      }
+    });
+    collections = newArray;
+    objCart= {};
+
+    printProducts();
+    printProductsInCart();
+    printTotalCart();
+    printAmountCart();
+  }
+});
+
 
 /*DARK MODE LOGICA*/
 
